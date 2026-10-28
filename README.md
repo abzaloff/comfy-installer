@@ -12,6 +12,8 @@ A Windows batch installer for a fresh [ComfyUI](https://github.com/Comfy-Org/Com
 
 Git and uv are installed if missing. The installer tries `winget` first and offers a direct-download fallback when `winget` is unavailable. An internet connection is needed to clone repositories and download packages. The CUDA build is intended for an NVIDIA GPU with a compatible driver.
 
+Repository clones use `git clone --depth 1` to download only the latest history, reducing the amount of data transferred during installation.
+
 ## Install
 
 1. Put `install_comfyui_uv.bat` in the folder where you want the `ComfyUI` folder to be created.

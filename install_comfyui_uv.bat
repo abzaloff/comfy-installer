@@ -44,7 +44,7 @@ if not exist "%CUSTOM_NODES_LIST%" (
 )
 
 echo Cloning ComfyUI...
-git clone https://github.com/Comfy-Org/ComfyUI.git
+git clone --depth 1 https://github.com/Comfy-Org/ComfyUI.git
 if errorlevel 1 (
     echo ERROR: Failed to clone ComfyUI.
     pause
@@ -92,7 +92,7 @@ if errorlevel 1 (
 echo.
 echo Installing ComfyUI-Manager custom node...
 cd /d custom_nodes
-git clone https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager
+git clone --depth 1 https://github.com/ltdrdata/ComfyUI-Manager comfyui-manager
 if errorlevel 1 (
     echo ERROR: Failed to clone ComfyUI-Manager.
     pause
@@ -403,7 +403,7 @@ echo     echo ERROR: "!NODE_DIR!" already exists but is not a git repository.
 echo     exit /b 1
 echo ^) else ^(
 echo     echo Cloning !NODE_NAME!...
-echo     git clone "!NODE_URL!" "!NODE_DIR!"
+echo     git clone --depth 1 "!NODE_URL!" "!NODE_DIR!"
 echo ^)
 echo if errorlevel 1 ^(
 echo     echo ERROR: Failed to clone or update !NODE_NAME!.
