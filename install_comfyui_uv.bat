@@ -248,6 +248,16 @@ echo     echo ERROR: ComfyUI was not found in "%%COMFY_DIR%%".
 echo     pause
 echo     exit /b 1
 echo ^)
+echo if not exist "%%COMFY_DIR%%\manager_requirements.txt" ^(
+echo     echo ERROR: ComfyUI manager_requirements.txt was not found.
+echo     pause
+echo     exit /b 1
+echo ^)
+echo if not exist "%%COMFY_DIR%%\custom_nodes\comfyui-manager\requirements.txt" ^(
+echo     echo ERROR: ComfyUI-Manager requirements.txt was not found.
+echo     pause
+echo     exit /b 1
+echo ^)
 echo.
 echo where uv ^>nul 2^>nul
 echo if errorlevel 1 ^(
@@ -287,10 +297,56 @@ echo     pause
 echo     exit /b 1
 echo ^)
 echo.
+echo echo Installing PyTorch CUDA 13.0...
+echo uv pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu130
+echo if errorlevel 1 ^(
+echo     echo ERROR: Failed to install PyTorch.
+echo     pause
+echo     exit /b 1
+echo ^)
+echo.
 echo echo Installing ComfyUI requirements...
 echo uv pip install -r requirements.txt
 echo if errorlevel 1 ^(
 echo     echo ERROR: Failed to install ComfyUI requirements.
+echo     pause
+echo     exit /b 1
+echo ^)
+echo.
+echo echo Installing ComfyUI-Manager requirements...
+echo uv pip install -r custom_nodes\comfyui-manager\requirements.txt
+echo if errorlevel 1 ^(
+echo     echo ERROR: Failed to install ComfyUI-Manager requirements.
+echo     pause
+echo     exit /b 1
+echo ^)
+echo.
+echo echo Installing matrix-nio...
+echo uv pip install matrix-nio
+echo if errorlevel 1 ^(
+echo     echo ERROR: Failed to install matrix-nio.
+echo     pause
+echo     exit /b 1
+echo ^)
+echo.
+echo echo Installing Triton Windows and SageAttention...
+echo uv pip install triton-windows
+echo if errorlevel 1 ^(
+echo     echo ERROR: Failed to install triton-windows.
+echo     pause
+echo     exit /b 1
+echo ^)
+echo uv pip install sageattention
+echo if errorlevel 1 ^(
+echo     echo ERROR: Failed to install sageattention.
+echo     pause
+echo     exit /b 1
+echo ^)
+echo.
+echo echo Installing manager requirements...
+echo uv pip install -r manager_requirements.txt
+echo if errorlevel 1 ^(
+echo     echo ERROR: Failed to install manager requirements.
 echo     pause
 echo     exit /b 1
 echo ^)

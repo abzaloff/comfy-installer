@@ -38,7 +38,7 @@ The installer creates these helper files beside itself. It creates `custom_nodes
 | `update_requirements.bat` | Install the current ComfyUI and Manager core requirement files with uv. |
 | `install_dependency.bat` | Prompt for a Python package name and install it into the ComfyUI environment with uv. |
 | `install_custom_nodes.bat` | Clone or update repositories listed in `custom_nodes.txt` and install each node's `requirements.txt` with uv. |
-| `venv_reinstall.bat` | Delete and recreate `ComfyUI\venv`, then install only ComfyUI's `requirements.txt`. This does **not** restore the full package set above. |
+| `venv_reinstall.bat` | Delete and recreate `ComfyUI\venv`, then restore the same Python package set as the initial installation, including CUDA 13.0 PyTorch, Manager requirements, Triton Windows, and SageAttention. The existing ComfyUI and Manager repositories remain in place. |
 | `custom_nodes.txt` | List of custom-node Git URLs, one per line. Created only if it does not already exist. Blank lines and lines beginning with `#` are ignored. |
 
 The generated helpers and the installed `ComfyUI` folder are local files and are excluded from this repository by `.gitignore`.
